@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<script src="https://ajax.googleapis.com/.../jquery/3.3.1/jquery.min.js"> </script>
+	<body>
+<div id="txt"></div>
+</body>
+	
+<script type="text/javascript">
+
+	var div = document.getElementById("txt");
+	var br =document.createElement("br");
+	var x = document.createElement("input");
+
+    x.setAttribute("type" ,"number");
+    x.setAttribute("id" , "x");
+
+    var para = document.createTextNode("X:");
+    div.appendChild(para);
+    div.appendChild(x);
+    div.appendChild(br);
+
+    var y = document.createElement("input");
+    y.setAttribute("type" ,"number");
+    y.setAttribute("id" ,"y");
+    var para = document.createTextNode("Y: ");
+    
+    var br1 = document.createElement("br");
+    div.appendChild(para);
+    div.appendChild(y);
+    div.appendChild(br1);
+
+    var rot = document.createTextNode("Rotacija");
+    var r = document.createElement("input");
+    r.setAttribute("id" ,"rotate");
+
+    var br2 = document.createElement("br");
+
+    div.appendChild(rot);
+    div.appendChild(r);
+    div.appendChild(br2);
+
+    var json = document.createElement("button");
+    var text = document.createTextNode("To Json");
+    json.setAttribute("id" "json");
+    json.appendChild(text);
+     
+    div.appendChild(json);
+
+    var animate = document.createElement("button");
+    var text2 = document.createTextNode("Animate");
+    var br3 = document.createElement("br");
+
+    animate.appendChild(text2);
+    div.appendChild(br3);
+    div.appendChild(animate);
+
+    var nov = document.createElement("div");
+    nov.setAttribute("id" , "dvizi");
+    nov.setAttribute("style" , "height: 50px; width: 50px; background-color: yellow; position:absolute");
+
+    div.appendChild(nov);
+    
+    
+ $(document).ready(function(){
+
+     $("#animate").click(function(){
+       var x=document.getElementById("x").value;
+       var y=document.getElementById("y").value;
+       $("#dvizi").animate({
+         left:"+="+x,
+         top:"-="+y
+       });
+      });
+     $("#animate").click(function(){
+       var rot = document.getElementById("rotate").value;
+     $("#dvizi").css("transform", "rotate(" + rot + "deg)");
+    });
+ });
+
+ $(document).ready(function(){
+
+    $("#json").click(function(){
+     var obj = new Object();
+     obj.x = document.getElementById("x").value;
+     obj.y = document.getElementById("y").value;
+     obj.rot = document.getElementById("rotate").value;
+     var str = JSON.stringify(obj);
+     console.log(str);
+   });
+  });
+
+</script>
+</head>
+
+</html>
